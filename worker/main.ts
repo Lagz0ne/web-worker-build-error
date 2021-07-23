@@ -29,6 +29,10 @@ export function useWorker() {
       console.log(event);
     };
 
+    setInterval(() => {
+      worker.dispatchEvent(new CustomEvent("message"));
+    }, 500);
+
     dispatchRef.current = worker.dispatchEvent;
     return worker.terminate;
   }, []);
